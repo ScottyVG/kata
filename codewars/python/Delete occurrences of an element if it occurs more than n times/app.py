@@ -1,53 +1,54 @@
+# from collections import Counter
+
 def delete_nth(order,max_e):
     # code here
-    # print(len(order))
-
-    # if order == [1,1,1,1] and max_e == 2:
-    #     return [1,1]
-    if len(order) == 0:
+    if not order or max_e < 1:
         return []
-    else:
-        result = order
-        check_if_popped = []
-        # j_loop = len(order) - 1
-        j_loop = len(order)
-        count = 0
-        # print("j_loop value:")
-        # print(result)
-        for i in range(0, len(order)):
-            # count = 0
-            # print("")
-            # print("i loop running!!")
-            j_loop = j_loop - 1
-            # print(j_loop)
-            check_if_popped_set = set(check_if_popped)
-            if j_loop > 1:
-                if order[i] in check_if_popped_set :
-                    print("skip if order[i] in check_if_popped_set")
-                else:
-                    for j in range(0, j_loop):
-                    # for j in range(1, j_loop):
-                        if j == 0:
-                            print("skip if j == 0")
-                        else:
-                            print("order[j]: " + str(order[j]) + "  order[i]: " + str(order[i]))
-                            # print("result[j]: " + str(result[j]))
-                            if order[j] == order[i]:
-                                count += 1
-                                print("count: " + str(count))
-                                # if count >= max_e:
-                                if count >= max_e - 1:
-                                    print("result[j]: " + str(result[j]))
-                                    print("result[i]: " + str(result[i]))
-                                    print("order[i]: " + str(order[i]))
-                                    check_if_popped.append(result[j])
-                                    # print("result[j]: " + str(result[j]))
-                                    # print("result[i - j]: " + str(result[i - j]))
-                                    # result.remove(result[j])
-                                    result.pop(order[j])
-                                print(result)
-                                print("")
-        return result
+
+    counted_order = { x:0 for x in order }
+    new_order = []
+
+    for item in order:
+        if counted_order[item] < max_e:
+            counted_order[item] += 1
+            new_order.append(item)
+
+    return new_order
+    # seen = {}
+    # result = []
+    # for i in order:
+    #     if i not in seen:
+    #         seen[i] = 0
+    #     else:
+    #         seen[i] += 1
+    #     if seen[i] < max_e:
+    #         result.append(i)
+    #     return result
+    # seen = set()
+    # a = [-1, 1, 66.25, 333, 333, 1234.5]
+    # result = order
+    # return [item for item in result if item not in seen and not seen.add(item)]
+    # [-1, 1, 66.25, 333, 1234.5]
+
+
+    # # seen = set()
+    # # [item for item in order if item not in seen and not seen.add(item)]
+    # if order == []:
+    #     return []
+    # else:
+    #     seen = set()
+    #     return [item for item, count in collections.Counter(order).items if count == max_e]
+
+    #     # return [item for item in order if item not in seen and not seen.add(item)]
+    #     # # count = order.count(1)
+    #     # # print(count)
+    #     # result = order
+    #     # for i in range(0, len(order)):
+    #     #     count = order.count(order[i])
+    #     #     print(count)
+    #     #     if count >= max_e + 1:
+
+
 
 
 print("test 1:")
