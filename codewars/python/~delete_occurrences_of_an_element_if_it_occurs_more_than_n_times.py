@@ -1,5 +1,7 @@
-# from collections import Counter
+# TODO: finish this kata
 
+
+# from collections import Counter
 def delete_nth(order,max_e):
     # code here
     if not order or max_e < 1:
@@ -62,3 +64,8 @@ print(delete_nth([20,37,20,21], 1))
 print("")
 print("test 4:")
 print(delete_nth([1,1,3,3,7,2,2,2,2], 3))
+
+'''
+https://www.codewars.com/kata/554ca54ffa7d91b236000023/train/python
+
+'''
