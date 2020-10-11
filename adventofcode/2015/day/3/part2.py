@@ -1,34 +1,52 @@
+import itertools
+
 def main():
     with open("input.txt", "r") as input_file:
-        dimensions = input_file.read()
+        directions = input_file.read()
 
-    def Convert(string): # Python code to convert string to list 
-        li = list(string.split("\n"))
-        for i in range(len(li)):
-            if li[i] == ['']:
-                del li[i]
-            else:
-                li[i] = list(li[i].split("x"))
-        return li
+    def Convert(string): # Convert string to a list by every char
+        list1=[] 
+        list1[:0]=string 
+        return list1 
 
-    dlist = Convert(dimensions)
-    feet_of_ribbon = 0 
+    dlist = Convert(directions)
+    
+    stops = [[0,0]]
+    real_gps_cords = [] # [+North -South, +East -West]
+    robo_gps_cords = [] # [+North -South, +East -West]
+    real_santa_ns = 0
+    real_santa_ew = 0
+    robo_santa_ns = 0
+    robo_santa_ew = 0
+
     for i in range(len(dlist)):
-        if dlist[i] == ['']:
-            del dlist[i]
-        else:
-            shortest_distance_around_its_sides = 0
-            cubic_volume = 0
-            l = int(dlist[i][0])
-            w = int(dlist[i][1])
-            h = int(dlist[i][2])
-            cubic_volume = l*w*h
-            lwh = [l, w, h]
-            shortest_distance_around_its_sides = (2 * sorted(lwh)[0]) + (2 * sorted(lwh)[1])
-            feet_of_ribbon += (shortest_distance_around_its_sides + cubic_volume)
+        if (i % 2 == 0):
+            if dlist[i] == '^':
+                robo_santa_ns += 1
+            elif dlist[i] == 'v':
+                robo_santa_ns -= 1
+            elif dlist[i] == '>':
+                robo_santa_ew += 1
+            elif dlist[i] == '<':
+                robo_santa_ew -= 1
+            robo_gps_cords = [robo_santa_ns, robo_santa_ew]
+            stops.append(robo_gps_cords)
+        elif (i % 2 != 0):
+            if dlist[i] == '^':
+                real_santa_ns += 1
+            elif dlist[i] == 'v':
+                real_santa_ns -= 1
+            elif dlist[i] == '>':
+                real_santa_ew += 1
+            elif dlist[i] == '<':
+                real_santa_ew -= 1
+            real_gps_cords = [real_santa_ns, real_santa_ew]
+            stops.append(real_gps_cords)
 
-    print(int(feet_of_ribbon))
+    stops.sort()
+    unique_stops = list(stops for stops,_ in itertools.groupby(stops))
+    print(len(stops))
+    print(len(unique_stops))
 
 if __name__ == "__main__":
     main()
-
