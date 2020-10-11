@@ -2,7 +2,9 @@
 
 from re import search
 
-regex="fjd3IR9"
+# regex="[A-Za-z0-9]{6,}"
+# regex="^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*?[A-Z])(?=.*\d)[a-zA-Z0-9]+$"
+regex="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!#%*?&]{6,}$"
 
 print(bool(search(regex, 'fjd3IR9')))
 print(bool(search(regex, 'ghdfj32')))

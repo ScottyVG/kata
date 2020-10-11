@@ -10,7 +10,6 @@ def main():
         return list1 
 
     dlist = Convert(directions)
-    print(len(dlist)) 
 
     for i in range(0, len(dlist)):
         if dlist[i] == "(":
