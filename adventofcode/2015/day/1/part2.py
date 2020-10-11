@@ -14,10 +14,14 @@ def main():
     for i in range(0, len(dlist)):
         if dlist[i] == "(":
             floor += 1
+            if floor == -1:
+                print(i + 1)
+                break
         elif dlist[i] == ")":
             floor -= 1
-    
-    print(floor)
+            if floor == -1:
+                print(i + 1)
+                break
 
 if __name__ == "__main__":
     main()
