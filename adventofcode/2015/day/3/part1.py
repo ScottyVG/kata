@@ -29,6 +29,7 @@ def main():
         stops.append(gps_cords)
 
     stops.sort()
+    # find unique items in a list of lists
     unique_stops = list(stops for stops,_ in itertools.groupby(stops))
 
     print(len(unique_stops))
