@@ -16,3 +16,10 @@ def number(lines):
 
 print(number([]))
 print(number(["a", "b", "c"]))
+
+'''
+https://www.codewars.com/kata/54bf85e3d5b56c7a05000cf9/train/python
+
+def number(lines):
+  return ['%d: %s' % v for v in enumerate(lines, 1)]
+'''
